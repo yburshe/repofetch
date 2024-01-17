@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Github API Fetch</title>
     <link rel="stylesheet" href="styles.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="search">
-        <h1>Github Repo List</h1>
-        <div class="search-bar">
-            <form onsubmit="return false">
-                <input id="username" type="text" placeholder="Enter github username" />
-                <button onclick="Click()">Go</button>
-            </form>
-        </div>
+      <h1>Github Repository List</h1>
+      <div class="search-bar">
+        <form onsubmit="return false">
+          <img class="search-icon" src="search.svg" />
+          <input
+            id="searchString"
+            type="text"
+            placeholder="Enter github username"
+          />
+        </form>
+        <div id="container"></div>
+        <div id="repos"></div>
+      </div>
     </div>
-    <div class="container"></div>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>

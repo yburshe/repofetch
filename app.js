@@ -1,42 +1,84 @@
-async function getRepos(x) {
-    let url = `https://api.github.com/users/${x}/repos`;
-    try {
-        let res = await fetch(url);
-        console.log("Got Repos!")
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-    }
-}
+const searchInput = document.getElementById("searchString");
+const Repos = document.getElementById("repos");
+const container = document.getElementById("container");
 
-async function renderRepos(x) {
-    let repos = await getRepos(x);
-    let html = "";
-    let repo_description = "";
-    repos.forEach((repo) => {
-        if (repo.description == null) {
-            repo_description = "No description";
-        } else {
-            repo_description = repo.description;
-        }
-        let htmlSegment = `<div class="repo">
-                        <h2><a target="_blank" href=${repo.clone_url}>${repo.name}</a></h2>
-                        <p>${repo_description}</p>
-                        <p>Watchers: ${repo.watchers}</p>
-                        <p>Forks: ${repo.forks}</p>
-                    </div>`;
+let debounceTimer;
 
-        html += htmlSegment;
+searchInput.addEventListener("input", function () {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => searchUsers(searchInput.value.trim()), 250);
+});
+
+function getRepos(username) {
+  container.innerHTML = "";
+  const headers = new Headers();
+  headers.append(
+    "Authorization",
+    "Bearer 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"
+  );
+  headers.append("Accept", "application/vnd.github+json");
+  const requestOptions = {
+    method: "GET",
+    headers: headers,
+  };
+
+  let url = `https://api.github.com/users/${username}/repos`;
+  let html = `<div class="repos" >`;
+  let htmlSegment = "";
+  fetch(url, requestOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      data.forEach((repo) => {
+        htmlSegment += `<p>${repo.name}</p>`;
+      });
+      html += htmlSegment;
+      Repos.innerHTML = html;
     });
-
-    let container = document.querySelector(".container");
-    container.innerHTML = html;
-    console.log("Rendered Repos!")
 }
 
-function Click() {
-    var x = document.getElementById("username").value;
-    renderRepos(x);
-}
+async function searchUsers(x) {
+  Repos.innerHTML = "";
+  container.innerHTML = "";
+  if (x === "") {
+    return;
+  }
 
-Click();
+  const headers = new Headers();
+  headers.append(
+    "Authorization",
+    "Bearer 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"
+  );
+  headers.append("Accept", "application/vnd.github+json");
+  const requestOptions = {
+    method: "GET",
+    headers: headers,
+  };
+  let url = `https://api.github.com/search/users?q=${x}`;
+  let html = `<div class="results" >`;
+  let count = 0;
+  fetch(url, requestOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      users = data.items;
+      users.forEach((user) => {
+        if (count < 5) {
+          console.log("yo");
+          htmlSegment = `<p onclick="getRepos('${user.login}')""><img class="user_avatar" src="${user.avatar_url}"/>${user.login}</p>`;
+          html += htmlSegment;
+        }
+        count++;
+      });
+      if (x == "") {
+        container.innerHTML = "";
+      }
+      html += "</div>";
+      container.innerHTML = html;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
