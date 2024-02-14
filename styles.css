@@ -6,14 +6,13 @@
 }
 
 body {
-  height: 100%;
   background-color: rgba(255, 255, 255, 0.871);
 }
 
 .search {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  margin-top: 1rem;
   align-items: center;
   gap: 1rem;
 }
@@ -52,15 +51,11 @@ button {
   border: none;
   background-color: rgb(234, 234, 234);
   color: black;
-  box-shadow: 0px 0px 4pxrgba (0, 0, 0, 0.5) k;
+  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.202); */
   border-right: none;
   width: 40ch;
   padding-left: 45px;
   outline: none;
-}
-
-.hidden {
-  display: none;
 }
 
 #container {
@@ -71,18 +66,27 @@ button {
   width: 40ch;
   border-radius: 0px 0px 10px 10px;
   position: absolute;
+  z-index: -1;
   top: -10px;
   padding-top: 10px;
   background-color: rgb(234, 234, 234);
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+}
+
+.results hr {
+  border: 0.5px solid rgb(192, 192, 192);
 }
 
 .results p {
   padding: 1rem 0.75rem;
   display: flex;
   gap: 0.5rem;
+  cursor: pointer;
+}
+
+.results p:last-child {
+  border-radius: 0px 0px 10px 10px;
 }
 
 .results p:hover {
@@ -93,4 +97,103 @@ button {
   border-radius: 2px;
   height: 20px;
   width: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 600px;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+thead td {
+  padding: 0.75rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.049);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr td {
+  padding: 0.75rem;
+  font-family: monospace;
+}
+
+td img {
+  margin: auto;
+  vertical-align: middle;
+}
+
+.watchers,
+.stars {
+  text-align: center;
+}
+
+.jumbo {
+  background-color: rgb(22, 22, 23);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: white;
+}
+
+.jumbo h1,
+h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+.jumbo h6 {
+  margin-top: 1rem;
+}
+
+.jumbo p,
+a {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+}
+
+.jumbo a {
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 600px;
+  padding-left: 0.75rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.user-info h2 {
+  font-family: monospace;
+}
+
+.user-info img {
+  border-radius: 100vh;
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 600px;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.user-info-wrapper hr {
+  border: 0.5px solid rgb(180, 180, 180);
 }

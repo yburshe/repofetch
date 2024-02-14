@@ -3,26 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Github API Fetch</title>
+    <title>Repofetch | Explore repositories</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
   </head>
 
   <body>
-    <div class="search">
-      <h1>Github Repository List</h1>
-      <div class="search-bar">
-        <form onsubmit="return false">
-          <img class="search-icon" src="search.svg" />
-          <input
-            id="searchString"
-            type="text"
-            placeholder="Enter github username"
-          />
-        </form>
-        <div id="container"></div>
-        <div id="repos"></div>
-      </div>
+    <div class="jumbo">
+      <h1>Repofetch</h1>
+      <p>Explore user repositories on Github</p>
+      <h6>Made by <a href="https://www.github.com/yashburshe">Yash Burshe</a><h6>
     </div>
+      <div class="search">
+        <div class="search-bar">
+          <form onsubmit="return false">
+            <img class="search-icon" src="search.svg" />
+            <input
+              id="searchString"
+              type="text"
+              placeholder="Search users on Github"
+            />
+          </form>
+          <div id="container"></div>
+        </div>
+      </div>
+      <div id="user-info"></div>
+      <table id="repos"></table>
+
     <script src="app.js"></script>
   </body>
 </html>
