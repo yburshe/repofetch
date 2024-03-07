@@ -3,7 +3,7 @@ const Repos = document.getElementById("repos");
 const container = document.getElementById("container");
 const thead = document.getElementById("repos-head");
 const github_key =
-  "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";
+  "GITHUB_KEY";
 const currentUser = document.getElementById("user-info");
 
 let debounceTimer;
